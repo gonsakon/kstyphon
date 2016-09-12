@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="stylesheets/default.css">
+  <script src="javascripts/vendor.js"></script>
+  <script src="javascripts/all.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-light bg-faded">
+    <a class="navbar-brand" href="/">高雄防災通 - 提供即時停水、停電、淹水資訊</a>
+    <!-- <ul class="nav navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul> -->
+  </nav>
+
+  <div class="container-fluid m-t-2" ng-controller="appCtrl as app">
+    <div class="m-b-3 row">
+      <div class="col-sm-4">
+        <label for="sort">災害類型</label>
+        <select id="sort" class="form-control" name=""  ng-model="app.typeNow"
+           ng-init="app.typeNow = app.type[0]"
+           ng-options="v for v  in app.type">
+          
+          
+        </select>
+      </div>
+      <div class="col-sm-4">
+        <label for="sort">地區</label>
+        <select id="sort" class="form-control" name=""
+          ng-options="item.name for item in app.zipNames"
+          ng-model="app.zipname">
+          <option value="">-- 選擇地區 --</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card-columns">
+      <div class="card" ng-repeat="(key, item) in app.data | filter: app.zipname.name | filter:app.typeNow"
+        >
+        <div class="card-block">
+         
+          <div class="text-muted">
+            <span ng-bind="item.ZipName_" class="tag tag-primary"></span>
+            <span ng-bind="item.address_"></span>
+          </div>
+          <p class="card-text"><span ng-bind="item.BeforeDesc_"></span></p>
+          <div class="card-text">
+            <small class="text-muted" ng-bind="'通報日期：' + item.Save_Date_">
+            </small>
+          </div>
+          
+        </div>
+       
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
