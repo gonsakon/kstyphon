@@ -24,7 +24,9 @@ angular.module('app').controller('appCtrl', [
       url: '//gonsakon.github.io/HolidayAPI/typhon.json'
     }).then(function(response) {
       var origigndata, thisdata;
-      origigndata = JSON.parse(response.data);
+
+      origigndata = response.data;
+      console.log(origigndata);
       thisdata = [];
       origigndata.forEach(function(d) {
         if (d.InformDesc_ === '停電' || d.InformDesc_ === '暴雨積水(一)' || d.InformDesc_ === '暴雨積水(二)' || d.InformDesc_ === '停水' || d.InformDesc_ === '地下道、路面積水(一)' || d.InformDesc_ === '地下道、路面積水(二)') {
